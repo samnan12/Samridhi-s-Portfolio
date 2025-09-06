@@ -261,7 +261,7 @@ const AboutPage = () => {
               {
                 icon: Users,
                 title: "User-Centered",
-                description: "Every design decision is made with the user's needs, goals, and context in mind."
+                description: "Every design decision is made with the user&apos;s needs, goals, and context in mind."
               },
               {
                 icon: Lightbulb,
