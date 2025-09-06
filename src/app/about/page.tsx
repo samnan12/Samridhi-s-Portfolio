@@ -208,7 +208,7 @@ const AboutPage = () => {
                 User-Centered
               </h3>
               <p className="text-muted">
-                Every design decision is made with the user's needs, goals, and context in mind.
+                Every design decision is made with the user&apos;s needs, goals, and context in mind.
               </p>
             </motion.div>
 
