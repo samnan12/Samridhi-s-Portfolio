@@ -4,33 +4,50 @@ import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { aboutInfo } from '@/data/portfolio';
-import { ArrowRight, Award, Users, Lightbulb, Heart } from 'lucide-react';
+import { ArrowRight, Award, Users, Lightbulb, Heart, Sparkles, Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
 const AboutPage = () => {
+  const socialLinks = [
+    { name: 'Github', href: 'https://github.com/samridhi-nandwani', icon: Github },
+    { name: 'LinkedIn', href: 'https://linkedin.com/in/samridhi-nandwani', icon: Linkedin },
+    { name: 'Twitter', href: 'https://twitter.com/samridhi_design', icon: Twitter },
+    { name: 'Email', href: 'mailto:samridhi@example.com', icon: Mail },
+  ];
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="relative overflow-hidden pt-32 pb-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
+        <div className="container mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="text-center max-w-4xl mx-auto"
           >
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl font-light text-gray-900">
-                About Me
-              </h1>
-              <p className="text-lg text-gray-600">
-                {aboutInfo.tagline}
-              </p>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center"
+              >
+                <Sparkles className="w-4 h-4 text-primary-foreground" />
+              </motion.div>
+              <Badge variant="secondary">About</Badge>
             </div>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold mb-6">
+              About Me
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {aboutInfo.tagline}
+            </p>
           </motion.div>
         </div>
       </section>
@@ -39,66 +56,81 @@ const AboutPage = () => {
 
       {/* Bio Section */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <div className="space-y-6">
-              <h2 className="text-3xl font-light text-gray-900">My Story</h2>
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
               <div className="space-y-6">
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  {aboutInfo.bio}
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  {aboutInfo.philosophy}
-                </p>
+                <h2 className="text-4xl sm:text-5xl font-display font-bold">My Story</h2>
+                <div className="space-y-6">
+                  <p className="text-xl text-muted-foreground leading-relaxed">
+                    {aboutInfo.bio}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {aboutInfo.philosophy}
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
-      <Separator className="my-16" />
+              {/* Social Links */}
+              <div className="flex space-x-4">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    aria-label={social.name}
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
 
-      {/* Experience Section */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <h2 className="text-3xl font-light text-gray-900">Experience</h2>
-            <div className="space-y-8">
-              {aboutInfo.experience.map((exp, index) => (
+            {/* Character Illustration */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="relative w-full h-96 bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl overflow-hidden">
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="border-l-2 border-gray-200 pl-6"
+                  animate={{ 
+                    y: [0, -20, 0],
+                    rotate: [0, 5, 0, -5, 0]
+                  }}
+                  transition={{ 
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="absolute inset-0 flex items-center justify-center"
                 >
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-medium text-gray-900">
-                      {exp.title}
-                    </h3>
-                    <p className="text-gray-600 font-medium">{exp.company}</p>
-                    <p className="text-sm text-gray-500">{exp.duration}</p>
-                    <p className="text-gray-600 leading-relaxed">
-                      {exp.description}
-                    </p>
+                  <div className="w-80 h-80 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-60 h-60 bg-gradient-to-br from-primary/40 to-primary/20 rounded-full flex items-center justify-center">
+                      <div className="w-40 h-40 bg-gradient-to-br from-primary/60 to-primary/30 rounded-full flex items-center justify-center">
+                        <Sparkles className="w-20 h-20 text-primary/80" />
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
-              ))}
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -106,37 +138,101 @@ const AboutPage = () => {
 
       {/* Skills Section */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="container mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl font-light text-gray-900">Skills & Expertise</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {aboutInfo.skills.map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  className="p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors"
-                >
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <Award className="w-4 h-4 text-gray-600" />
-                    </div>
-                    <h3 className="font-medium text-gray-900">
-                      {skill}
-                    </h3>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <h2 className="text-4xl sm:text-5xl font-display font-bold mb-6">
+              Skills & Expertise
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              A comprehensive toolkit for creating exceptional digital experiences.
+            </p>
           </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {aboutInfo.skills.map((skill, index) => (
+              <motion.div
+                key={skill}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02] bg-card/50 backdrop-blur-sm">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Award className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="font-semibold text-lg">
+                        {skill}
+                      </h3>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-16" />
+
+      {/* Experience Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl font-display font-bold mb-6">
+              Experience
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              My professional journey in design and user experience.
+            </p>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto space-y-8">
+            {aboutInfo.experience.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.01] bg-card/50 backdrop-blur-sm">
+                  <CardContent className="p-8">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                      <div>
+                        <h3 className="text-2xl font-display font-semibold mb-2">
+                          {exp.title}
+                        </h3>
+                        <p className="text-primary font-medium text-lg">{exp.company}</p>
+                      </div>
+                      <Badge variant="secondary" className="mt-2 md:mt-0 w-fit">
+                        {exp.duration}
+                      </Badge>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {exp.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -144,109 +240,104 @@ const AboutPage = () => {
 
       {/* Values Section */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="container mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl font-light text-gray-900">What Drives Me</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-center space-y-4"
-              >
-                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto">
-                  <Users className="w-8 h-8 text-gray-600" />
-                </div>
-                <h3 className="text-xl font-medium text-gray-900">
-                  User-Centered
-                </h3>
-                <p className="text-gray-600">
-                  Every design decision is made with the user&apos;s needs, goals, and context in mind.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="text-center space-y-4"
-              >
-                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto">
-                  <Lightbulb className="w-8 h-8 text-gray-600" />
-                </div>
-                <h3 className="text-xl font-medium text-gray-900">
-                  Innovation
-                </h3>
-                <p className="text-gray-600">
-                  Pushing boundaries and exploring new possibilities to create memorable experiences.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-center space-y-4"
-              >
-                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto">
-                  <Heart className="w-8 h-8 text-gray-600" />
-                </div>
-                <h3 className="text-xl font-medium text-gray-900">
-                  Empathy
-                </h3>
-                <p className="text-gray-600">
-                  Understanding and connecting with users to create designs that truly resonate.
-                </p>
-              </motion.div>
-            </div>
+            <h2 className="text-4xl sm:text-5xl font-display font-bold mb-6">
+              What Drives Me
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              The principles and values that guide my design process.
+            </p>
           </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Users,
+                title: "User-Centered",
+                description: "Every design decision is made with the user's needs, goals, and context in mind."
+              },
+              {
+                icon: Lightbulb,
+                title: "Innovation",
+                description: "Pushing boundaries and exploring new possibilities to create memorable experiences."
+              },
+              {
+                icon: Heart,
+                title: "Empathy",
+                description: "Understanding and connecting with users to create designs that truly resonate."
+              }
+            ].map((value, index) => (
+              <motion.div
+                key={value.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center space-y-6 group"
+              >
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02] bg-card/50 backdrop-blur-sm">
+                  <CardContent className="p-8">
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <value.icon className="w-10 h-10 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-display font-semibold mb-4">
+                      {value.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {value.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       <Separator className="my-16" />
 
       {/* CTA Section */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center space-y-8"
-          >
-            <div className="space-y-4">
-              <h2 className="text-3xl font-light text-gray-900">
-                Let&apos;s Create Something Amazing
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                I&apos;m always excited to work on new projects and collaborate with passionate teams. 
-                Let&apos;s discuss how we can bring your vision to life.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50">
-                <Link href="/contact">
-                  Get In Touch
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="ghost" size="lg" className="text-gray-600 hover:bg-gray-50">
-                <Link href="/projects">
-                  View My Work
-                </Link>
-              </Button>
-            </div>
-          </motion.div>
+      <section className="py-24">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div className="space-y-4">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold">
+                  Let&apos;s Create Something Amazing
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  I&apos;m always excited to work on new projects and collaborate with passionate teams. 
+                  Let&apos;s discuss how we can bring your vision to life.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg">
+                  <Link href="/contact">
+                    Get In Touch
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/projects">
+                    View My Work
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
