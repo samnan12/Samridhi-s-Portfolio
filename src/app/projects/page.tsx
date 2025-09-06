@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import { projects } from '@/data/portfolio';
-import { ArrowRight, ExternalLink, Calendar, User } from 'lucide-react';
+import { ArrowRight, Calendar, User } from 'lucide-react';
 
 const ProjectsPage = () => {
   return (
@@ -142,10 +142,10 @@ const ProjectsPage = () => {
             className="space-y-6"
           >
             <h2 className="text-4xl lg:text-5xl font-heading font-bold">
-              Let's Work Together
+              Let&apos;s Work Together
             </h2>
             <p className="text-xl text-secondary-300 max-w-2xl mx-auto">
-              Have a project in mind? I'd love to hear about it and explore how we can create something amazing together.
+              Have a project in mind? I&apos;d love to hear about it and explore how we can create something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="/contact" variant="secondary" size="lg">

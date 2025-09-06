@@ -262,11 +262,11 @@ const AboutPage = () => {
             className="space-y-6"
           >
             <h2 className="text-4xl lg:text-5xl font-heading font-bold">
-              Let's Create Something Amazing
+              Let&apos;s Create Something Amazing
             </h2>
             <p className="text-xl text-secondary-300 max-w-2xl mx-auto">
-              I'm always excited to work on new projects and collaborate with passionate teams. 
-              Let's discuss how we can bring your vision to life.
+              I&apos;m always excited to work on new projects and collaborate with passionate teams. 
+              Let&apos;s discuss how we can bring your vision to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="/contact" variant="secondary" size="lg">

@@ -102,7 +102,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-lg font-heading font-semibold">Let's Connect</h4>
+            <h4 className="text-lg font-heading font-semibold">Let&apos;s Connect</h4>
             <div className="space-y-2">
               <p className="text-secondary-300">
                 Ready to work together on your next project?

@@ -77,11 +77,11 @@ const ContactPage = () => {
             className="text-center mb-16"
           >
             <h1 className="text-5xl lg:text-6xl font-heading font-bold text-primary mb-6">
-              Let's Connect
+              Let&apos;s Connect
             </h1>
             <p className="text-xl text-muted max-w-3xl mx-auto">
-              Have a project in mind or just want to chat about design? I'd love to hear from you. 
-              Let's create something amazing together.
+              Have a project in mind or just want to chat about design? I&apos;d love to hear from you. 
+              Let&apos;s create something amazing together.
             </p>
           </motion.div>
         </div>
@@ -114,7 +114,7 @@ const ContactPage = () => {
                     Message Sent!
                   </h3>
                   <p className="text-muted">
-                    Thank you for reaching out. I'll get back to you soon.
+                    Thank you for reaching out. I&apos;ll get back to you soon.
                   </p>
                 </motion.div>
               ) : (
@@ -223,9 +223,9 @@ const ContactPage = () => {
                   Get In Touch
                 </h2>
                 <p className="text-lg text-muted leading-relaxed mb-8">
-                  I'm always excited to work on new projects and collaborate with passionate teams. 
+                  I&apos;m always excited to work on new projects and collaborate with passionate teams. 
                   Whether you have a specific project in mind or just want to discuss design, 
-                  I'd love to hear from you.
+                  I&apos;d love to hear from you.
                 </p>
               </div>
 

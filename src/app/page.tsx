@@ -2,12 +2,11 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import { featuredProjects, aboutInfo } from '@/data/portfolio';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const HomePage = () => {
   return (
@@ -32,7 +31,7 @@ const HomePage = () => {
                 className="space-y-4"
               >
                 <h1 className="text-5xl lg:text-6xl font-heading font-bold text-primary leading-tight">
-                  Hi, I'm{' '}
+                  Hi, I&apos;m{' '}
                   <span className="text-accent">Samridhi</span>
                 </h1>
                 <h2 className="text-2xl lg:text-3xl font-heading font-semibold text-primary-600">

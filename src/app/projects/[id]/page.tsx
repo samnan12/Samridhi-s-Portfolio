@@ -7,7 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import { projects } from '@/data/portfolio';
-import { ArrowLeft, ExternalLink, Calendar, User, Tag, CheckCircle } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Calendar, User, CheckCircle } from 'lucide-react';
 
 interface ProjectPageProps {
   params: {
