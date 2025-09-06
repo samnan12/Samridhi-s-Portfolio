@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Satoshi } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -9,9 +9,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const satoshi = Satoshi({
-  variable: "--font-satoshi",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -44,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${satoshi.variable} font-sans antialiased`}
+        className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

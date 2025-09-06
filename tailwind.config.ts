@@ -53,7 +53,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
-        display: ["var(--font-satoshi)", "Satoshi", "system-ui", "sans-serif"],
+        display: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
       },
       fontSize: {
         "xs": ["0.75rem", { lineHeight: "1rem" }],
