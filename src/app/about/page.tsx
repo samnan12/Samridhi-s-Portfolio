@@ -3,278 +3,247 @@
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 import { aboutInfo } from '@/data/portfolio';
 import { ArrowRight, Award, Users, Lightbulb, Heart } from 'lucide-react';
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+      <section className="pt-32 pb-16">
+        <div className="max-w-4xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="space-y-8"
           >
-            <h1 className="text-5xl lg:text-6xl font-heading font-bold text-primary mb-6">
-              About Me
-            </h1>
-            <p className="text-xl text-muted max-w-3xl mx-auto">
-              {aboutInfo.tagline}
-            </p>
+            <div className="space-y-4">
+              <h1 className="text-4xl sm:text-5xl font-light text-gray-900">
+                About Me
+              </h1>
+              <p className="text-lg text-gray-600">
+                {aboutInfo.tagline}
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
+
+      <Separator className="my-16" />
 
       {/* Bio Section */}
-      <section className="py-16 px-6 lg:px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-primary">
-                My Story
-              </h2>
-              <p className="text-lg text-muted leading-relaxed">
-                {aboutInfo.bio}
-              </p>
-              <p className="text-muted leading-relaxed">
-                {aboutInfo.philosophy}
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="relative w-full h-96 bg-gradient-to-br from-accent/20 to-accent/5 rounded-3xl overflow-hidden">
-                <motion.div
-                  animate={{ 
-                    y: [0, -20, 0],
-                    rotate: [0, 3, 0, -3, 0]
-                  }}
-                  transition={{ 
-                    duration: 10,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <div className="w-64 h-64 bg-accent/20 rounded-full flex items-center justify-center">
-                    <div className="w-32 h-32 bg-accent/30 rounded-full flex items-center justify-center">
-                      <Heart className="w-16 h-16 text-accent/60" />
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section className="py-20 px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="space-y-8"
           >
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">
-              Skills & Expertise
-            </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
-              A comprehensive toolkit for creating exceptional digital experiences.
-            </p>
+            <div className="space-y-6">
+              <h2 className="text-3xl font-light text-gray-900">My Story</h2>
+              <div className="space-y-6">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  {aboutInfo.bio}
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  {aboutInfo.philosophy}
+                </p>
+              </div>
+            </div>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {aboutInfo.skills.map((skill, index) => (
-              <motion.div
-                key={skill}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/10"
-              >
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
-                    <Award className="w-5 h-5 text-accent" />
-                  </div>
-                  <h3 className="font-heading font-semibold text-primary">
-                    {skill}
-                  </h3>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
+
+      <Separator className="my-16" />
 
       {/* Experience Section */}
-      <section className="py-20 px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="space-y-8"
           >
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">
-              Experience
-            </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
-              My professional journey in design and user experience.
-            </p>
-          </motion.div>
-
-          <div className="space-y-8">
-            {aboutInfo.experience.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-secondary rounded-2xl p-8 border border-primary/10"
-              >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-heading font-semibold text-primary mb-1">
+            <h2 className="text-3xl font-light text-gray-900">Experience</h2>
+            <div className="space-y-8">
+              {aboutInfo.experience.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="border-l-2 border-gray-200 pl-6"
+                >
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-medium text-gray-900">
                       {exp.title}
                     </h3>
-                    <p className="text-accent font-medium">{exp.company}</p>
+                    <p className="text-gray-600 font-medium">{exp.company}</p>
+                    <p className="text-sm text-gray-500">{exp.duration}</p>
+                    <p className="text-gray-600 leading-relaxed">
+                      {exp.description}
+                    </p>
                   </div>
-                  <span className="text-muted text-sm mt-2 md:mt-0">
-                    {exp.duration}
-                  </span>
-                </div>
-                <p className="text-muted leading-relaxed">
-                  {exp.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
+
+      <Separator className="my-16" />
+
+      {/* Skills Section */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <h2 className="text-3xl font-light text-gray-900">Skills & Expertise</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {aboutInfo.skills.map((skill, index) => (
+                <motion.div
+                  key={skill}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  className="p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors"
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <Award className="w-4 h-4 text-gray-600" />
+                    </div>
+                    <h3 className="font-medium text-gray-900">
+                      {skill}
+                    </h3>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <Separator className="my-16" />
 
       {/* Values Section */}
-      <section className="py-20 px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="space-y-8"
           >
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">
-              What Drives Me
-            </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
-              The principles and values that guide my design process.
-            </p>
+            <h2 className="text-3xl font-light text-gray-900">What Drives Me</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center space-y-4"
+              >
+                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto">
+                  <Users className="w-8 h-8 text-gray-600" />
+                </div>
+                <h3 className="text-xl font-medium text-gray-900">
+                  User-Centered
+                </h3>
+                <p className="text-gray-600">
+                  Every design decision is made with the user&apos;s needs, goals, and context in mind.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="text-center space-y-4"
+              >
+                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto">
+                  <Lightbulb className="w-8 h-8 text-gray-600" />
+                </div>
+                <h3 className="text-xl font-medium text-gray-900">
+                  Innovation
+                </h3>
+                <p className="text-gray-600">
+                  Pushing boundaries and exploring new possibilities to create memorable experiences.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-center space-y-4"
+              >
+                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto">
+                  <Heart className="w-8 h-8 text-gray-600" />
+                </div>
+                <h3 className="text-xl font-medium text-gray-900">
+                  Empathy
+                </h3>
+                <p className="text-gray-600">
+                  Understanding and connecting with users to create designs that truly resonate.
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center space-y-4"
-            >
-              <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto">
-                <Users className="w-8 h-8 text-accent" />
-              </div>
-              <h3 className="text-xl font-heading font-semibold text-primary">
-                User-Centered
-              </h3>
-              <p className="text-muted">
-                Every design decision is made with the user&apos;s needs, goals, and context in mind.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-center space-y-4"
-            >
-              <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto">
-                <Lightbulb className="w-8 h-8 text-accent" />
-              </div>
-              <h3 className="text-xl font-heading font-semibold text-primary">
-                Innovation
-              </h3>
-              <p className="text-muted">
-                Pushing boundaries and exploring new possibilities to create memorable experiences.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-center space-y-4"
-            >
-              <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto">
-                <Heart className="w-8 h-8 text-accent" />
-              </div>
-              <h3 className="text-xl font-heading font-semibold text-primary">
-                Empathy
-              </h3>
-              <p className="text-muted">
-                Understanding and connecting with users to create designs that truly resonate.
-              </p>
-            </motion.div>
-          </div>
         </div>
       </section>
 
+      <Separator className="my-16" />
+
       {/* CTA Section */}
-      <section className="py-20 px-6 lg:px-8 bg-primary text-secondary">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="text-center space-y-8"
           >
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold">
-              Let&apos;s Create Something Amazing
-            </h2>
-            <p className="text-xl text-secondary-300 max-w-2xl mx-auto">
-              I&apos;m always excited to work on new projects and collaborate with passionate teams. 
-              Let&apos;s discuss how we can bring your vision to life.
-            </p>
+            <div className="space-y-4">
+              <h2 className="text-3xl font-light text-gray-900">
+                Let&apos;s Create Something Amazing
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                I&apos;m always excited to work on new projects and collaborate with passionate teams. 
+                Let&apos;s discuss how we can bring your vision to life.
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" variant="secondary" size="lg">
-                Get In Touch
-                <ArrowRight className="ml-2 w-5 h-5" />
+              <Button asChild variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50">
+                <Link href="/contact">
+                  Get In Touch
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
               </Button>
-              <Button href="/projects" variant="outline" size="lg">
-                View My Work
+              <Button asChild variant="ghost" size="lg" className="text-gray-600 hover:bg-gray-50">
+                <Link href="/projects">
+                  View My Work
+                </Link>
               </Button>
             </div>
           </motion.div>

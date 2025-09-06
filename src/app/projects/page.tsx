@@ -9,31 +9,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { projects } from '@/data/portfolio';
-import { ArrowRight, Calendar, User, Sparkles } from 'lucide-react';
+import { ArrowRight, Calendar, User } from 'lucide-react';
 
 const ProjectsPage = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-        <div className="relative container mx-auto px-4">
+      <section className="pt-32 pb-16">
+        <div className="max-w-4xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
+            className="space-y-6"
           >
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <Sparkles className="w-5 h-5 text-accent" />
-              <Badge variant="secondary">Portfolio</Badge>
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-              My Projects
+            <h1 className="text-4xl sm:text-5xl font-light text-gray-900">
+              Portfolio
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-600 max-w-2xl">
               A collection of my design work spanning user experience, interface design, and brand identity. 
               Each project represents a unique challenge and creative solution.
             </p>
@@ -41,98 +36,88 @@ const ProjectsPage = () => {
         </div>
       </section>
 
+      <Separator className="my-16" />
+
       {/* Projects Grid */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="space-y-16">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group"
               >
-                <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02]">
+                <Card className="border-0 shadow-none hover:shadow-sm transition-shadow">
                   <Link href={`/projects/${project.id}`}>
-                    {/* Project Image */}
-                    <div className="relative h-56 bg-gradient-to-br from-accent/20 to-accent/5 overflow-hidden">
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                        className="absolute inset-0 flex items-center justify-center"
-                      >
-                        <div className="w-32 h-32 bg-accent/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                          <div className="w-16 h-16 bg-accent/40 rounded-lg"></div>
-                        </div>
-                      </motion.div>
-                      
-                      {project.featured && (
-                        <div className="absolute top-4 left-4">
-                          <Badge className="bg-accent text-accent-foreground">
-                            Featured
-                          </Badge>
-                        </div>
-                      )}
-                    </div>
-
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between mb-3">
-                        <Badge variant="outline" className="text-xs">
-                          {project.category}
-                        </Badge>
-                        <div className="flex items-center text-xs text-muted-foreground">
-                          <Calendar className="w-3 h-3 mr-1" />
-                          {project.year}
-                        </div>
-                      </div>
-                      
-                      <CardTitle className="text-xl group-hover:text-accent transition-colors">
-                        {project.title}
-                      </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="pt-0">
-                      <CardDescription className="text-sm mb-4 line-clamp-3">
-                        {project.shortDescription}
-                      </CardDescription>
-
-                      <div className="space-y-3">
-                        <div className="flex items-center text-sm text-muted-foreground">
-                          <User className="w-4 h-4 mr-2" />
-                          {project.role}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                      {/* Project Image */}
+                      <div className="relative h-64 bg-gray-100 rounded-lg overflow-hidden">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-24 h-24 bg-gray-200 rounded-lg flex items-center justify-center">
+                            <div className="w-12 h-12 bg-gray-300 rounded"></div>
+                          </div>
                         </div>
                         
-                        <div className="flex flex-wrap gap-2">
-                          {project.tools.slice(0, 3).map((tool) => (
-                            <Badge
-                              key={tool}
-                              variant="secondary"
-                              className="text-xs"
-                            >
-                              {tool}
+                        {project.featured && (
+                          <div className="absolute top-4 left-4">
+                            <Badge className="bg-gray-900 text-white border-0">
+                              Featured
                             </Badge>
-                          ))}
-                          {project.tools.length > 3 && (
-                            <Badge variant="secondary" className="text-xs">
-                              +{project.tools.length - 3}
-                            </Badge>
-                          )}
-                        </div>
+                          </div>
+                        )}
+                      </div>
 
-                        <div className="flex items-center justify-between pt-2">
-                          <span className="text-sm text-accent font-medium">
-                            View Project
-                          </span>
-                          <motion.div
-                            whileHover={{ x: 4 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <ArrowRight className="w-4 h-4 text-accent" />
-                          </motion.div>
+                      {/* Project Content */}
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-4 text-sm text-gray-500">
+                          <span>{project.category}</span>
+                          <span>•</span>
+                          <span>{project.year}</span>
+                        </div>
+                        
+                        <h3 className="text-2xl font-light text-gray-900 group-hover:text-gray-700 transition-colors">
+                          {project.title}
+                        </h3>
+                        
+                        <p className="text-gray-600 leading-relaxed">
+                          {project.shortDescription}
+                        </p>
+
+                        <div className="space-y-3">
+                          <div className="flex items-center text-sm text-gray-500">
+                            <User className="w-4 h-4 mr-2" />
+                            {project.role}
+                          </div>
+                          
+                          <div className="flex flex-wrap gap-2">
+                            {project.tools.slice(0, 4).map((tool) => (
+                              <Badge
+                                key={tool}
+                                variant="secondary"
+                                className="bg-gray-100 text-gray-700 border-0 text-xs"
+                              >
+                                {tool}
+                              </Badge>
+                            ))}
+                            {project.tools.length > 4 && (
+                              <Badge variant="secondary" className="bg-gray-100 text-gray-700 border-0 text-xs">
+                                +{project.tools.length - 4}
+                              </Badge>
+                            )}
+                          </div>
+
+                          <div className="flex items-center justify-between pt-2">
+                            <span className="text-sm text-gray-500">
+                              View Project
+                            </span>
+                            <ArrowRight className="w-4 h-4 text-gray-400" />
+                          </div>
                         </div>
                       </div>
-                    </CardContent>
+                    </div>
                   </Link>
                 </Card>
               </motion.div>
@@ -144,39 +129,37 @@ const ProjectsPage = () => {
       <Separator className="my-16" />
 
       {/* CTA Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="space-y-4">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-                  Let&apos;s Work Together
-                </h2>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                  Have a project in mind? I&apos;d love to hear about it and explore how we can create something amazing together.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
-                  <Link href="/contact">
-                    Start a Project
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/about">
-                    Learn More About Me
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-          </div>
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center space-y-8"
+          >
+            <div className="space-y-4">
+              <h2 className="text-3xl font-light text-gray-900">
+                Let&apos;s Work Together
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Have a project in mind? I&apos;d love to hear about it and explore how we can create something amazing together.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50">
+                <Link href="/contact">
+                  Start a Project
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="ghost" size="lg" className="text-gray-600 hover:bg-gray-50">
+                <Link href="/about">
+                  Learn More About Me
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
