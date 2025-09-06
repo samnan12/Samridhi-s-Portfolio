@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,20 +34,25 @@ const Header = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-secondary/95 backdrop-blur-md shadow-lg' 
+          ? 'bg-background/95 backdrop-blur-md shadow-lg border-b' 
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-3">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="text-2xl font-heading font-bold text-primary"
+              className="flex items-center space-x-2"
             >
-              SN
+              <div className="w-8 h-8 bg-gradient-to-br from-accent to-accent/70 rounded-lg flex items-center justify-center">
+                <Sparkles className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                Samridhi
+              </span>
             </motion.div>
           </Link>
 
@@ -55,7 +62,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="relative text-primary hover:text-accent transition-colors duration-200 font-medium"
+                className="relative text-foreground/80 hover:text-foreground transition-colors duration-200 font-medium"
               >
                 <motion.span
                   whileHover={{ y: -2 }}
@@ -70,12 +77,19 @@ const Header = () => {
                 </motion.span>
               </Link>
             ))}
+            <Button asChild size="sm" className="ml-4">
+              <Link href="/contact">
+                Let&apos;s Talk
+              </Link>
+            </Button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-primary/10 transition-colors"
+            className="md:hidden"
             aria-label="Toggle mobile menu"
           >
             <motion.div
@@ -83,12 +97,12 @@ const Header = () => {
               transition={{ duration: 0.2 }}
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-primary" />
+                <X className="w-5 h-5" />
               ) : (
-                <Menu className="w-6 h-6 text-primary" />
+                <Menu className="w-5 h-5" />
               )}
             </motion.div>
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -100,9 +114,9 @@ const Header = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-secondary/95 backdrop-blur-md border-t border-primary/10"
+            className="md:hidden bg-background/95 backdrop-blur-md border-t"
           >
-            <nav className="px-6 py-4 space-y-4">
+            <nav className="container mx-auto px-4 py-6 space-y-4">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -113,12 +127,24 @@ const Header = () => {
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-lg font-medium text-primary hover:text-accent transition-colors py-2"
+                    className="block text-lg font-medium text-foreground hover:text-accent transition-colors py-2"
                   >
                     {item.name}
                   </Link>
                 </motion.div>
               ))}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="pt-4"
+              >
+                <Button asChild className="w-full">
+                  <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                    Let&apos;s Talk
+                  </Link>
+                </Button>
+              </motion.div>
             </nav>
           </motion.div>
         )}

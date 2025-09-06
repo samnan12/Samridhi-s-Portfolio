@@ -4,28 +4,36 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 import { projects } from '@/data/portfolio';
-import { ArrowRight, Calendar, User } from 'lucide-react';
+import { ArrowRight, Calendar, User, Sparkles } from 'lucide-react';
 
 const ProjectsPage = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative overflow-hidden pt-32 pb-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+        <div className="relative container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl lg:text-6xl font-heading font-bold text-primary mb-6">
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <Sparkles className="w-5 h-5 text-accent" />
+              <Badge variant="secondary">Portfolio</Badge>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               My Projects
             </h1>
-            <p className="text-xl text-muted max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               A collection of my design work spanning user experience, interface design, and brand identity. 
               Each project represents a unique challenge and creative solution.
             </p>
@@ -34,8 +42,8 @@ const ProjectsPage = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="pb-20 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <motion.div
@@ -45,8 +53,8 @@ const ProjectsPage = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group"
               >
-                <Link href={`/projects/${project.id}`}>
-                  <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-primary/10 h-full">
+                <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02]">
+                  <Link href={`/projects/${project.id}`}>
                     {/* Project Image */}
                     <div className="relative h-56 bg-gradient-to-br from-accent/20 to-accent/5 overflow-hidden">
                       <motion.div
@@ -54,59 +62,61 @@ const ProjectsPage = () => {
                         transition={{ duration: 0.3 }}
                         className="absolute inset-0 flex items-center justify-center"
                       >
-                        <div className="w-32 h-32 bg-accent/20 rounded-2xl flex items-center justify-center">
+                        <div className="w-32 h-32 bg-accent/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
                           <div className="w-16 h-16 bg-accent/40 rounded-lg"></div>
                         </div>
                       </motion.div>
                       
                       {project.featured && (
                         <div className="absolute top-4 left-4">
-                          <span className="bg-accent text-white px-3 py-1 rounded-full text-xs font-medium">
+                          <Badge className="bg-accent text-accent-foreground">
                             Featured
-                          </span>
+                          </Badge>
                         </div>
                       )}
                     </div>
 
-                    {/* Project Content */}
-                    <div className="p-6 flex flex-col h-full">
+                    <CardHeader className="pb-3">
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-sm font-medium text-accent">
+                        <Badge variant="outline" className="text-xs">
                           {project.category}
-                        </span>
-                        <div className="flex items-center text-sm text-muted">
-                          <Calendar className="w-4 h-4 mr-1" />
+                        </Badge>
+                        <div className="flex items-center text-xs text-muted-foreground">
+                          <Calendar className="w-3 h-3 mr-1" />
                           {project.year}
                         </div>
                       </div>
                       
-                      <h3 className="text-xl font-heading font-semibold text-primary mb-3 group-hover:text-accent transition-colors">
+                      <CardTitle className="text-xl group-hover:text-accent transition-colors">
                         {project.title}
-                      </h3>
-                      
-                      <p className="text-muted text-sm mb-4 flex-grow line-clamp-3">
+                      </CardTitle>
+                    </CardHeader>
+
+                    <CardContent className="pt-0">
+                      <CardDescription className="text-sm mb-4 line-clamp-3">
                         {project.shortDescription}
-                      </p>
+                      </CardDescription>
 
                       <div className="space-y-3">
-                        <div className="flex items-center text-sm text-muted">
+                        <div className="flex items-center text-sm text-muted-foreground">
                           <User className="w-4 h-4 mr-2" />
                           {project.role}
                         </div>
                         
                         <div className="flex flex-wrap gap-2">
                           {project.tools.slice(0, 3).map((tool) => (
-                            <span
+                            <Badge
                               key={tool}
-                              className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md"
+                              variant="secondary"
+                              className="text-xs"
                             >
                               {tool}
-                            </span>
+                            </Badge>
                           ))}
                           {project.tools.length > 3 && (
-                            <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md">
+                            <Badge variant="secondary" className="text-xs">
                               +{project.tools.length - 3}
-                            </span>
+                            </Badge>
                           )}
                         </div>
 
@@ -122,41 +132,51 @@ const ProjectsPage = () => {
                           </motion.div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </Link>
+                    </CardContent>
+                  </Link>
+                </Card>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      <Separator className="my-16" />
+
       {/* CTA Section */}
-      <section className="py-20 px-6 lg:px-8 bg-primary text-secondary">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold">
-              Let&apos;s Work Together
-            </h2>
-            <p className="text-xl text-secondary-300 max-w-2xl mx-auto">
-              Have a project in mind? I&apos;d love to hear about it and explore how we can create something amazing together.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" variant="secondary" size="lg">
-                Start a Project
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button href="/about" variant="outline" size="lg">
-                Learn More About Me
-              </Button>
-            </div>
-          </motion.div>
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div className="space-y-4">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+                  Let&apos;s Work Together
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Have a project in mind? I&apos;d love to hear about it and explore how we can create something amazing together.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg">
+                  <Link href="/contact">
+                    Start a Project
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/about">
+                    Learn More About Me
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

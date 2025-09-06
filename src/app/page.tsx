@@ -4,19 +4,23 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 import { featuredProjects, aboutInfo } from '@/data/portfolio';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink, Calendar, User, Sparkles } from 'lucide-react';
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+        <div className="relative container mx-auto px-4 py-24 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Hero Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -28,16 +32,27 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="space-y-4"
+                className="space-y-6"
               >
-                <h1 className="text-5xl lg:text-6xl font-heading font-bold text-primary leading-tight">
+                <div className="flex items-center gap-2 mb-4">
+                  <Sparkles className="w-5 h-5 text-accent" />
+                  <Badge variant="secondary" className="text-sm">
+                    Available for work
+                  </Badge>
+                </div>
+                
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
                   Hi, I&apos;m{' '}
-                  <span className="text-accent">Samridhi</span>
+                  <span className="bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">
+                    Samridhi
+                  </span>
                 </h1>
-                <h2 className="text-2xl lg:text-3xl font-heading font-semibold text-primary-600">
+                
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-muted-foreground">
                   {aboutInfo.role}
                 </h2>
-                <p className="text-lg text-muted max-w-lg">
+                
+                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
                   {aboutInfo.tagline}
                 </p>
               </motion.div>
@@ -48,12 +63,16 @@ const HomePage = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Button href="/projects" size="lg">
-                  View My Work
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                <Button asChild size="lg" className="text-lg px-8 py-6">
+                  <Link href="/projects">
+                    View My Work
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
                 </Button>
-                <Button href="/contact" variant="outline" size="lg">
-                  Get In Touch
+                <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6">
+                  <Link href="/contact">
+                    Get In Touch
+                  </Link>
                 </Button>
               </motion.div>
             </motion.div>
@@ -65,7 +84,8 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="relative"
             >
-              <div className="relative w-full h-96 lg:h-[500px] bg-gradient-to-br from-accent/20 to-accent/5 rounded-3xl overflow-hidden">
+              <div className="relative w-full h-96 lg:h-[500px]">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 rounded-3xl" />
                 <motion.div
                   animate={{ 
                     y: [0, -10, 0],
@@ -78,7 +98,7 @@ const HomePage = () => {
                   }}
                   className="absolute inset-0 flex items-center justify-center"
                 >
-                  <div className="w-64 h-64 bg-accent/10 rounded-full flex items-center justify-center">
+                  <div className="w-64 h-64 bg-accent/10 rounded-full flex items-center justify-center backdrop-blur-sm">
                     <div className="w-32 h-32 bg-accent/20 rounded-full flex items-center justify-center">
                       <div className="w-16 h-16 bg-accent/30 rounded-full"></div>
                     </div>
@@ -91,8 +111,8 @@ const HomePage = () => {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="py-20 px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-24 lg:py-32">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -100,10 +120,13 @@ const HomePage = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary mb-4">
+            <Badge variant="outline" className="mb-4">
+              Featured Work
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
               Featured Projects
             </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               A selection of my recent work showcasing user-centered design and innovative solutions.
             </p>
           </motion.div>
@@ -118,8 +141,8 @@ const HomePage = () => {
                 viewport={{ once: true }}
                 className="group"
               >
-                <Link href={`/projects/${project.id}`}>
-                  <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-primary/10">
+                <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02]">
+                  <Link href={`/projects/${project.id}`}>
                     {/* Project Image */}
                     <div className="relative h-48 bg-gradient-to-br from-accent/20 to-accent/5 overflow-hidden">
                       <motion.div
@@ -127,45 +150,48 @@ const HomePage = () => {
                         transition={{ duration: 0.3 }}
                         className="absolute inset-0 flex items-center justify-center"
                       >
-                        <div className="w-24 h-24 bg-accent/20 rounded-2xl flex items-center justify-center">
+                        <div className="w-24 h-24 bg-accent/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
                           <div className="w-12 h-12 bg-accent/40 rounded-lg"></div>
                         </div>
                       </motion.div>
+                      
+                      <div className="absolute top-4 left-4">
+                        <Badge className="bg-accent text-accent-foreground">
+                          {project.category}
+                        </Badge>
+                      </div>
                     </div>
 
-                    {/* Project Content */}
-                    <div className="p-6">
+                    <CardHeader className="pb-3">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-accent">
-                          {project.category}
-                        </span>
-                        <span className="text-sm text-muted">
+                        <Badge variant="secondary" className="text-xs">
                           {project.year}
-                        </span>
-                      </div>
-                      
-                      <h3 className="text-xl font-heading font-semibold text-primary mb-2 group-hover:text-accent transition-colors">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-muted text-sm mb-4 line-clamp-2">
-                        {project.shortDescription}
-                      </p>
-
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted">
-                          {project.role}
-                        </span>
+                        </Badge>
                         <motion.div
                           whileHover={{ x: 4 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <ArrowRight className="w-4 h-4 text-accent" />
+                          <ArrowRight className="w-4 h-4 text-muted-foreground" />
                         </motion.div>
                       </div>
-                    </div>
-                  </div>
-                </Link>
+                      
+                      <CardTitle className="text-xl group-hover:text-accent transition-colors">
+                        {project.title}
+                      </CardTitle>
+                    </CardHeader>
+
+                    <CardContent className="pt-0">
+                      <CardDescription className="text-sm mb-4 line-clamp-2">
+                        {project.shortDescription}
+                      </CardDescription>
+
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <User className="w-4 h-4 mr-2" />
+                        {project.role}
+                      </div>
+                    </CardContent>
+                  </Link>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -177,37 +203,52 @@ const HomePage = () => {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <Button href="/projects" size="lg">
-              View All Projects
-              <ArrowRight className="ml-2 w-5 h-5" />
+            <Button asChild size="lg" variant="outline">
+              <Link href="/projects">
+                View All Projects
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
             </Button>
           </motion.div>
         </div>
       </section>
 
+      <Separator className="my-16" />
+
       {/* About Preview Section */}
-      <section className="py-20 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="py-24 lg:py-32">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-8"
             >
-              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary">
-                About Me
-              </h2>
-              <p className="text-lg text-muted leading-relaxed">
-                {aboutInfo.bio}
-              </p>
-              <p className="text-muted leading-relaxed">
-                {aboutInfo.philosophy}
-              </p>
-              <Button href="/about" variant="outline">
-                Learn More About Me
-                <ArrowRight className="ml-2 w-4 h-4" />
+              <div>
+                <Badge variant="outline" className="mb-4">
+                  About Me
+                </Badge>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+                  About Me
+                </h2>
+              </div>
+              
+              <div className="space-y-6">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {aboutInfo.bio}
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {aboutInfo.philosophy}
+                </p>
+              </div>
+              
+              <Button asChild variant="outline" size="lg">
+                <Link href="/about">
+                  Learn More About Me
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
               </Button>
             </motion.div>
 
@@ -231,7 +272,7 @@ const HomePage = () => {
                   }}
                   className="absolute inset-0 flex items-center justify-center"
                 >
-                  <div className="w-48 h-48 bg-accent/20 rounded-full flex items-center justify-center">
+                  <div className="w-48 h-48 bg-accent/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                     <div className="w-24 h-24 bg-accent/30 rounded-full flex items-center justify-center">
                       <div className="w-12 h-12 bg-accent/50 rounded-full"></div>
                     </div>
