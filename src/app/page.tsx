@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { featuredProjects, aboutInfo } from '@/data/portfolio';
+import { featuredProjects, aboutInfo, collaborations, publications } from '@/data/portfolio';
 import { ArrowRight, ExternalLink, Calendar, User, Sparkles, Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
 const HomePage = () => {
@@ -325,6 +325,119 @@ const HomePage = () => {
                 </motion.div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-16" />
+
+      {/* Experience Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <Badge variant="outline" className="mb-4">Experience</Badge>
+            <h2 className="text-4xl sm:text-5xl font-display font-bold">Experience</h2>
+          </motion.div>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {aboutInfo.experience.map((exp, index) => (
+              <motion.div
+                key={`${exp.title}-${index}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3"
+              >
+                <div>
+                  <h3 className="text-xl font-semibold">{exp.title}</h3>
+                  <p className="text-primary font-medium">{exp.company}</p>
+                  <p className="text-muted-foreground mt-2">{exp.description}</p>
+                </div>
+                <Badge variant="secondary" className="shrink-0">{exp.duration}</Badge>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-16" />
+
+      {/* Collaborations & Publications Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <Badge variant="outline" className="mb-4">Collaborations & Publications</Badge>
+            <h2 className="text-4xl sm:text-5xl font-display font-bold">Collaborations & Publications</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Collaborations */}
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold">Collaborations</h3>
+              {collaborations.map((item, idx) => (
+                <motion.a
+                  key={item.id}
+                  href={item.link || '#'}
+                  target={item.link ? '_blank' : undefined}
+                  rel={item.link ? 'noopener noreferrer' : undefined}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: idx * 0.05 }}
+                  viewport={{ once: true }}
+                  className="block rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-5 hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground">{item.partner} • {item.year}</p>
+                      <h4 className="text-lg font-medium mt-1">{item.title}</h4>
+                      <p className="text-muted-foreground mt-2">{item.description}</p>
+                    </div>
+                    <Badge variant="secondary" className="shrink-0">{item.year}</Badge>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+
+            {/* Publications */}
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold">Publications</h3>
+              {publications.map((pub, idx) => (
+                <motion.a
+                  key={pub.id}
+                  href={pub.link || '#'}
+                  target={pub.link ? '_blank' : undefined}
+                  rel={pub.link ? 'noopener noreferrer' : undefined}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: idx * 0.05 }}
+                  viewport={{ once: true }}
+                  className="block rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-5 hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground">{pub.venue} • {pub.year}</p>
+                      <h4 className="text-lg font-medium mt-1">{pub.title}</h4>
+                      {pub.authors && (
+                        <p className="text-muted-foreground mt-2">{pub.authors.join(', ')}</p>
+                      )}
+                    </div>
+                    <Badge variant="secondary" className="shrink-0">{pub.year}</Badge>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
           </div>
         </div>
       </section>

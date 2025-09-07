@@ -30,6 +30,24 @@ export interface AboutInfo {
   philosophy: string;
 }
 
+export interface CollaborationItem {
+  id: string;
+  title: string;
+  partner: string; // company, lab, or institution
+  year: string;
+  description: string;
+  link?: string;
+}
+
+export interface PublicationItem {
+  id: string;
+  title: string;
+  venue: string; // journal/conference/blog
+  year: string;
+  authors?: string[];
+  link?: string;
+}
+
 export const aboutInfo: AboutInfo = {
   name: "Samridhi Nandwani",
   role: "Interaction Designer",
@@ -244,3 +262,41 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter(project => project.featured);
+
+export const collaborations: CollaborationItem[] = [
+  {
+    id: "collab-1",
+    title: "Design Sprint for FinTech Onboarding",
+    partner: "Finrise Labs",
+    year: "2024",
+    description: "Partnered to reduce onboarding drop-off via rapid prototyping and usability testing.",
+    link: "https://example.com/collaboration"
+  },
+  {
+    id: "collab-2",
+    title: "Healthcare UX Research Initiative",
+    partner: "MediTech Research Group",
+    year: "2023",
+    description: "Mixed-methods research informing accessibility standards for elderly users.",
+    link: "https://example.com/meditech"
+  }
+];
+
+export const publications: PublicationItem[] = [
+  {
+    id: "pub-1",
+    title: "Designing Trust in FinTech Onboarding",
+    venue: "UX Collective",
+    year: "2024",
+    authors: ["Samridhi Nandwani"],
+    link: "https://example.com/ux-collective-article"
+  },
+  {
+    id: "pub-2",
+    title: "Inclusive Patterns for Healthcare Apps",
+    venue: "CHI Workshop",
+    year: "2023",
+    authors: ["Samridhi Nandwani", "Research Team"],
+    link: "https://example.com/chi-paper"
+  }
+];
