@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { featuredProjects, aboutInfo, collaborations, publications } from '@/data/portfolio';
-import { ArrowRight, ExternalLink, Calendar, User, Sparkles, Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { ArrowRight, User, Sparkles, Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
 const HomePage = () => {
   const socialLinks = [
