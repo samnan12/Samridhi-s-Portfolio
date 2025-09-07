@@ -27,7 +27,7 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-32 pb-24">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
-        <div className="container mx-auto px-6">
+        <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Hero Content */}
             <motion.div
@@ -64,7 +64,7 @@ const HomePage = () => {
                   {aboutInfo.role}
                 </h2>
                 
-                <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                <p className="text-xl text-muted-foreground measure leading-relaxed">
                   {aboutInfo.tagline}
                 </p>
               </motion.div>
@@ -153,7 +153,7 @@ const HomePage = () => {
 
       {/* Featured Projects Section */}
       <section className="py-24">
-        <div className="container mx-auto px-6">
+        <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -167,7 +167,7 @@ const HomePage = () => {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6">
               Featured Projects
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground measure mx-auto">
               A selection of my recent work showcasing user-centered design and innovative solutions.
             </p>
           </motion.div>
@@ -260,7 +260,7 @@ const HomePage = () => {
 
       {/* About Preview Section */}
       <section className="py-24">
-        <div className="container mx-auto px-6">
+        <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -279,10 +279,10 @@ const HomePage = () => {
               </div>
               
               <div className="space-y-6">
-                <p className="text-xl text-muted-foreground leading-relaxed">
+                <p className="text-xl text-muted-foreground measure leading-relaxed">
                   {aboutInfo.bio}
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground measure leading-relaxed">
                   {aboutInfo.philosophy}
                 </p>
               </div>
