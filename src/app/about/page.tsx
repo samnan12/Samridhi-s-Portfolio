@@ -165,7 +165,7 @@ const AboutPage = () => {
                 viewport={{ once: true }}
                 className="group"
               >
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02] bg-card/50 backdrop-blur-sm">
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02] bg-card/50 backdrop-blur-sm m-6">
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

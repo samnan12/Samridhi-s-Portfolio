@@ -61,7 +61,7 @@ const ProjectsPage = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group"
               >
-                <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02] bg-card/50 backdrop-blur-sm">
+                <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02] bg-card/50 backdrop-blur-sm m-6">
                   <Link href={`/projects/${project.id}`}>
                     {/* Project Image */}
                     <div className="relative h-64 bg-gradient-to-br from-primary/20 to-primary/5 overflow-hidden">

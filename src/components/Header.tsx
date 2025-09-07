@@ -48,7 +48,7 @@ const Header = () => {
       }`}
     >
       <div className="container">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between min-h-20 py-6">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <motion.div
