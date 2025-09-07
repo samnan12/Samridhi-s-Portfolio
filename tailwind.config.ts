@@ -11,10 +11,10 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: "1.5rem", // 24px
-        sm: "1rem",
-        lg: "2rem",
-        xl: "2.5rem",
+        DEFAULT: "2rem", // 32px base
+        sm: "1.25rem",
+        lg: "3rem",
+        xl: "4rem",
       },
       screens: {
         sm: "640px",

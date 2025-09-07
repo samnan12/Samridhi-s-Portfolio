@@ -47,7 +47,7 @@ const Header = () => {
           : 'bg-background/80 backdrop-blur border-b border-transparent'
       }`}
     >
-      <div className="container mx-auto px-6">
+      <div className="container">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
